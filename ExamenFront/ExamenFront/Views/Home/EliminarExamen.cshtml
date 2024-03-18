@@ -1,0 +1,68 @@
+﻿@model ExamenFront.Models.Examen
+
+@{
+    ViewBag.Title = "EliminarExamen";
+    Layout = null;
+}
+
+
+<div class="container">
+    <h3>¿Eiminar el siguiente registro?</h3>
+    <div>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Id Examen:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.idexamen)
+            </dd>
+
+            <dt>
+                Nombre:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+
+            <dt>
+                Descripción:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.descripcion)
+            </dd>
+
+        </dl>
+        @using (Html.BeginForm("EliminarExamen", "Home", FormMethod.Post))
+        {
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="nombre">Selecciona el metodo:</label>
+                <div class="col-md-10">
+                    <select class="form-control" name="metodo">
+                        <option value="API">API</option>
+                        <option value="PROCEDURE">PROCEDURE</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    <input type="submit" value="Eliminar" class="btn btn-danger btn-lg" />
+                    <br />
+                    <br />
+                </div>
+                
+            </div>
+
+
+        }
+
+       
+    </div>
+</div>

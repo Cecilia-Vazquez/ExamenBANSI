@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ExamenFront.Models.Examen>
+
+@{
+    ViewBag.Title = "";
+}
+<br />
+<br />
+
+<div style="text-align:right; padding:10px">
+    <a data-modal ="" id="btnCreate" onclick="OpenAddModal()" class="btn btn-info"> + Agregar Examen</a>
+</div>
+<br />
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="container">
+        <br /><br />
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" name="nombre" placeholder="">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="nombre">Descripcion:</label>
+                    <input type="text" class="form-control" name="descripcion" placeholder="">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group ">
+                    <label for="exampleFormControlSelect1">Selecciona el metodo:</label>
+                    <select class="form-control" name="metodo">
+                        <option value="API">API</option>
+                        <option value="PROCEDURE">PROCEDURE</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <br />
+                <button type="submit" class="btn btn-success">Consultar</button>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="table-responsive" style="padding-top: 28px; font-family: sans-serif; font-weight: bold;">
+    <table  class="table table-striped">
+        <thead class="">
+            <tr style="background-color: rgb(7 45 118); color: rgb(255 255 255); font-weight: bold;">
+                <th>
+
+                    Id Examen
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Descripción
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idexamen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td >
+                    <div style="display:flex; justify-content:end">
+
+                    <a data-modal="" id="btnCreate" onclick="OpenActModal(@item.idexamen)" class="btn btn-primary">
+                        Actualiza
+                    </a>  
+                    <a data-modal="" id="btnDelete" onclick="OpenDelModal(@item.idexamen)" class="btn btn-danger" style="margin-left:1rem;">
+                        Eliminar
+                    </a>
+
+                   
+                    </div>
+                </td>
+    </tr>
+    }
+
+    </table>
+</div>
+
+<div id="modal-add" class=" modal fade in">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div id='modal-add-content'></div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/AgregaExamen.js"></script>
